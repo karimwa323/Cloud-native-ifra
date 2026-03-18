@@ -1,22 +1,22 @@
-# data "terraform_remote_state" "network" {
-#   backend = "s3"
+data "terraform_remote_state" "network" {
+  backend = "s3"
 
-#   config = {
-#     bucket = "karim-eks-terraform-state-prod"
-#     key    = "prod/network/terraform.tfstate"
-#     region = "eu-central-1"
-#   }
-# }
+  config = {
+    bucket = "karim-eks-terraform-state-prod"
+    key    = "prod/network/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
 
-# data "terraform_remote_state" "iam" {
-#   backend = "s3"
+data "terraform_remote_state" "iam" {
+  backend = "s3"
 
-#   config = {
-#     bucket = "karim-eks-terraform-state-prod"
-#     key    = "prod/IAM/terraform.tfstate"
-#     region = "eu-central-1"
-#   }
-# }
+  config = {
+    bucket = "karim-eks-terraform-state-prod"
+    key    = "prod/IAM/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
 
 # module "jenkins" {
 #   source = "../../modules/jenkins"

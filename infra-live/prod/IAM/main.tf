@@ -20,10 +20,10 @@ output "node_role_arn" {
   value = module.iam.node_role_arn
 }
 
-output "jenkins_profile_name" {
-  value = module.iam.jenkins_profile_name
-}
+# output "jenkins_profile_name" {
+#   value = module.iam.jenkins_profile_name
+# }
 
-output "jenkins_role_arn" {
-  value = module.iam.jenkins_role_arn
-}
+# output "jenkins_role_arn" {
+#   value = module.iam.jenkins_role_arn
+# }

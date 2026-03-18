@@ -21,8 +21,8 @@ jobs:
           - directory: "infra-live/prod/ECR"
           - directory: "infra-live/prod/EKS"
           - directory: "infra-live/prod/IAM"
-          - directory: "infra-live/prod/jenkins"
-          - directory: "infra-live/prod/netwok"
+          # - directory: "infra-live/prod/jenkins"
+          - directory: "infra-live/prod/network"
 
     steps:
       - name: Checkout Code

@@ -57,10 +57,10 @@ resource "aws_iam_role_policy_attachment" "nodes_AmazonEC2ContainerRegistryReadO
 #   })
 # }
 
-resource "aws_iam_role_policy_attachment" "jenkins_eks_policy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.jenkins_role.name
-}
+# resource "aws_iam_role_policy_attachment" "jenkins_eks_policy" {
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+#   role       = aws_iam_role.jenkins_role.name
+# }
 
 resource "aws_iam_policy" "jenkins_eks_policy" {
   name        = "${var.environment}-jenkins-eks-policy"

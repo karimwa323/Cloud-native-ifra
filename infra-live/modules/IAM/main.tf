@@ -44,18 +44,18 @@ resource "aws_iam_role_policy_attachment" "nodes_AmazonEC2ContainerRegistryReadO
   role       = aws_iam_role.eks_nodes_role.name
 }
 
-resource "aws_iam_role" "jenkins_role" {
-  name = "${var.environment}-jenkins-role"
+# resource "aws_iam_role" "jenkins_role" {
+#   name = "${var.environment}-jenkins-role"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = { Service = "ec2.amazonaws.com" }
-    }]
-  })
-}
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [{
+#       Action = "sts:AssumeRole"
+#       Effect = "Allow"
+#       Principal = { Service = "ec2.amazonaws.com" }
+#     }]
+#   })
+# }
 
 resource "aws_iam_role_policy_attachment" "jenkins_eks_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
@@ -84,12 +84,12 @@ resource "aws_iam_policy" "jenkins_eks_policy" {
 }
 
 # 2. بنربط الـ Policy دي بالـ Role اللي اسمه "jenkins_role"
-resource "aws_iam_role_policy_attachment" "jenkins_eks_attach" {
-  role       = aws_iam_role.jenkins_role.name
-  policy_arn = aws_iam_policy.jenkins_eks_policy.arn
-}
+# resource "aws_iam_role_policy_attachment" "jenkins_eks_attach" {
+#   role       = aws_iam_role.jenkins_role.name
+#   policy_arn = aws_iam_policy.jenkins_eks_policy.arn
+# }
 
-resource "aws_iam_instance_profile" "jenkins_profile" {
-  name = "${var.environment}-jenkins-profile"
-  role = aws_iam_role.jenkins_role.name
-}
+# resource "aws_iam_instance_profile" "jenkins_profile" {
+#   name = "${var.environment}-jenkins-profile"
+#   role = aws_iam_role.jenkins_role.name
+# }

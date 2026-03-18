@@ -1,0 +1,38 @@
+---
+- name: Prepare Jenkins Master for EKS
+  hosts: jenkins_master
+  become: yes
+  tasks:
+
+    - name: Install ACL package
+      apt:
+        name: acl
+        state: present
+
+    - name: Update apt and install dependencies
+      apt:
+        update_cache: yes
+        name: ["unzip", "curl", "apt-transport-https"]
+
+    - name: Install AWS CLI
+      apt:
+        name: awscli
+        state: present
+
+    - name: Download kubectl binary
+      get_url:
+        url: "https://dl.k8s.io/release/v1.28.0/bin/linux/amd64/kubectl"
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
+
+    - name: Create .kube directory for Jenkins user
+      file:
+        path: /var/lib/jenkins/.kube
+        state: directory
+        owner: jenkins
+        group: jenkins
+
+    - name: Update Kubeconfig for Jenkins
+      shell: |
+        aws eks update-kubeconfig --name cloud-native-eks-prod --region eu-central-1
+      become_user: jenkins
